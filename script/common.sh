@@ -113,3 +113,16 @@ function check_docker_node(){
 function clean(){
     rm -rf /opt/dockm/image
 }
+
+
+function isSwarmNode(){
+    if [ "$(docker info | grep Swarm | sed 's/Swarm: //g')" == "inactive" ]; then
+         swarm_ready=0;
+        echo "$swarm_ready"
+    else
+         swarm_ready=1;
+       echo "$swarm_ready"
+    fi
+
+ return $swarm_ready
+}
